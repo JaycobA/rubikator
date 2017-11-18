@@ -102,6 +102,8 @@ function onConnectionLost() {
   onDataError("connection to server lost");
 }
 
+new DataSource('graphite', GraphiteVisualiser(rubikVis).processNewData, onConnectionLost, onDataError);
+
 var messenger = MessengerVisualiser(rubikVis);
 new DataSource('messenger', messenger.processNewData, onConnectionLost, onDataError);
 
