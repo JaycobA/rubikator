@@ -108,7 +108,7 @@ function dashboardServer() {
   webSocketDataSource('environments', require('./server/environmentReader').checkHealthAndUpdateClients, server, CHECK_FOR_CONFIG_FIRST);
   webSocketDataSource('logs', require('./server/elkReader').getElkData, server, CHECK_FOR_CONFIG_FIRST);
   webSocketDataSource('messenger', require('./server/messenger').getMessage, server);
-  webSocketDataSource('graphite', require('./server/graphiteReader').readDataForClients, server, CHECK_FOR_CONFIG_FIRST);
+  webSocketDataSource('graphite', require('./server/graphiteReader').getGraphiteData, server, CHECK_FOR_CONFIG_FIRST);
 
   /** ENDPOINTS ************************/
 
