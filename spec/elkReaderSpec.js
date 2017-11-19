@@ -1,4 +1,5 @@
 const proxyquire = require('proxyquire');
+const mockConfig = require('./support/mockConfig');
 
 describe('elkReader', () => {
 
@@ -30,15 +31,9 @@ describe('elkReader', () => {
 
   beforeEach(() => {
     requestMock = jasmine.createSpy('request');
-    const getConfigMock = jasmine.createSpy('get config');
-    getConfigMock.and.returnValue(mockConfigData);
-    const configMock = {
-      create: () => {
-        return {
-          get: getConfigMock
-        };
-      }
-    };
+
+    const configMock = mockConfig(mockConfigData);
+
     elkReader = proxyquire('../server/elkReader', {
       'request': requestMock,
       './ymlHerokuConfig': configMock
